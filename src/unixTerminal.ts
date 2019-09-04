@@ -8,11 +8,15 @@ import { Terminal, DEFAULT_COLS, DEFAULT_ROWS } from './terminal';
 import { IProcessEnv, IPtyForkOptions, IPtyOpenOptions } from './interfaces';
 import { ArgvOrCommandLine } from './types';
 import { assign } from './utils';
+import path from 'path'
 
 let pty: IUnixNative;
 try {
-  pty = process.pkg ? require(path.join(path.dirname(process.execPath), 'pty.node')) 
-                    : require(path.join('..', 'build', 'Release', 'pty.node'));
+  if (process.pkg) {
+    pty = require(path.join(path.dirname(process.execPath), 'pty.node')) 
+  } else {
+    pty = require(path.join('..', 'build', 'Release', 'pty.node'));
+  }
   // pty = require('../build/Release/pty.node');
 } catch (outerError) {
   try {
