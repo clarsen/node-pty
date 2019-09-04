@@ -8,7 +8,7 @@ import { Terminal, DEFAULT_COLS, DEFAULT_ROWS } from './terminal';
 import { IProcessEnv, IPtyForkOptions, IPtyOpenOptions } from './interfaces';
 import { ArgvOrCommandLine } from './types';
 import { assign } from './utils';
-import path from 'path'
+import { path } from 'path'
 
 let pty: IUnixNative;
 try {
