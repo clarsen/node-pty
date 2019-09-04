@@ -11,7 +11,9 @@ import { assign } from './utils';
 
 let pty: IUnixNative;
 try {
-  pty = require('../build/Release/pty.node');
+  pty = process.pkg ? require(path.join(path.dirname(process.execPath), 'pty.node')) 
+                    : require(path.join('..', 'build', 'Release', 'pty.node'));
+  // pty = require('../build/Release/pty.node');
 } catch (outerError) {
   try {
     pty = require('../build/Debug/pty.node');
